@@ -4,4 +4,7 @@
   border-radius: 6px;
   padding: 1rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  @media only screen and (max-width: 830px) {
+    border-radius: 0;
+  }
 }

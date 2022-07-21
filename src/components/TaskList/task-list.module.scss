@@ -1,0 +1,39 @@
+.card {
+  margin-top: 50px;
+  @media only screen and (max-width: 830px) {
+    margin-top: 20px;
+  }
+
+  .main-title {
+    font-size: 1.5rem;
+    margin-left: 0.5rem;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0 0.5rem 0.5rem;
+
+    li {
+      border: 1px solid #ccc;
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+      display: flex;
+      --gapValue: 50px;
+      gap: var(--gapValue);
+      @media only screen and (max-width: 830px) {
+        --gapValue: 15px;
+      }
+
+      span:first-child {
+        flex-basis: calc(80% - var(--gapValue));
+        overflow-wrap: break-word;
+        min-width: 40%;
+      }
+
+      span:nth-child(2) {
+        flex-basis: 20%;
+        color: #2e8b57;
+      }
+    }
+  }
+}
