@@ -4,7 +4,7 @@ const TaskList = ({ tasksData = [] }) => {
     <Card>
       <ul>
         {tasksData.map((taskData) => (
-          <li>
+          <li key={taskData.id}>
             {taskData.name} {taskData.priority}
           </li>
         ))}

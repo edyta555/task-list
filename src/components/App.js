@@ -7,14 +7,17 @@ function App() {
 
   const addTaskListHandler = (taskName, taskPriority) => {
     setTaskListData((prevTaskListData) => {
-      console.log("taskListData",taskListData)
-      return [...prevTaskListData, { name: taskName, priority: taskPriority }];
+      console.log("taskListData", taskListData);
+      return [
+        ...prevTaskListData,
+        { name: taskName, priority: taskPriority, id: Math.random().toString() },
+      ];
     });
   };
   return (
     <div>
       <AddTask onAddTask={addTaskListHandler} />
-      <TaskList tasksData={taskListData}/>
+      <TaskList tasksData={taskListData} />
     </div>
   );
 }
