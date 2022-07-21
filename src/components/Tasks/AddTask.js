@@ -1,10 +1,27 @@
+import { useState } from "react";
 import Card from "../UI/Card";
 
 import styles from "./add-task.module.scss";
 
 const AddTask = () => {
+  const defaultPriority = "low";
+  const [enteredTask, setEnteredTask] = useState("");
+  const [selectedPriority, setSelectedPriority] = useState(defaultPriority);
+
   const addTaskHandler = (event) => {
     event.preventDefault();
+    if (enteredTask.trim().length !== 0) {
+      setEnteredTask("");
+      setSelectedPriority(defaultPriority);
+    }
+  };
+
+  const changeTaskHandler = (event) => {
+    setEnteredTask(event.target.value);
+  };
+
+  const changePriorityHandler = (event) => {
+    setSelectedPriority(event.target.value);
   };
 
   return (
@@ -12,11 +29,21 @@ const AddTask = () => {
       <form onSubmit={addTaskHandler} className={styles.form}>
         <div>
           <label htmlFor="task">Task:</label>
-          <input id="task" type="text"/>
+          <input
+            id="task"
+            type="text"
+            value={enteredTask}
+            onChange={changeTaskHandler}
+          />
         </div>
         <div>
           <label htmlFor="task">Priority:</label>
-          <select name="priority" id="priority">
+          <select
+            name="priority"
+            id="priority"
+            value={selectedPriority}
+            onChange={changePriorityHandler}
+          >
             <option value="hight">Hight</option>
             <option value="medium">Medium</option>
             <option value="low">Low</option>
