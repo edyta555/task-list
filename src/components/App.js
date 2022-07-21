@@ -1,7 +1,22 @@
-import AddTask from "./Tasks/AddTask";
+import { useState } from "react";
+import AddTask from "./AddTask/AddTask";
+import TaskList from "./TaskList/TaskList";
 
 function App() {
-  return <AddTask />;
+  const [taskListData, setTaskListData] = useState([]);
+
+  const addTaskListHandler = (taskName, taskPriority) => {
+    setTaskListData((prevTaskListData) => {
+      console.log("taskListData",taskListData)
+      return [...prevTaskListData, { name: taskName, priority: taskPriority }];
+    });
+  };
+  return (
+    <div>
+      <AddTask onAddTask={addTaskListHandler} />
+      <TaskList tasksData={taskListData}/>
+    </div>
+  );
 }
 
 export default App;

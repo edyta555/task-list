@@ -3,7 +3,7 @@ import Card from "../UI/Card";
 
 import styles from "./add-task.module.scss";
 
-const AddTask = () => {
+const AddTask = ({ onAddTask }) => {
   const defaultPriority = "low";
   const [enteredTask, setEnteredTask] = useState("");
   const [selectedPriority, setSelectedPriority] = useState(defaultPriority);
@@ -11,6 +11,7 @@ const AddTask = () => {
   const addTaskHandler = (event) => {
     event.preventDefault();
     if (enteredTask.trim().length !== 0) {
+      onAddTask(enteredTask, selectedPriority);
       setEnteredTask("");
       setSelectedPriority(defaultPriority);
     }
