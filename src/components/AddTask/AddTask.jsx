@@ -9,10 +9,16 @@ const AddTask = ({ onAddTask }) => {
   const defaultPriority = "low";
   const [enteredTask, setEnteredTask] = useState("");
   const [selectedPriority, setSelectedPriority] = useState(defaultPriority);
+  const [error, setError] = useState();
 
   const addTaskHandler = (event) => {
     event.preventDefault();
-    if (enteredTask.trim().length !== 0) {
+    if (enteredTask.trim().length === 0) {
+      setError({
+        errorTitle: "Empty field",
+        errorMessage: "Please enter a task name.",
+      });
+    } else {
       onAddTask(enteredTask, selectedPriority);
       setEnteredTask("");
       setSelectedPriority(defaultPriority);
@@ -27,12 +33,10 @@ const AddTask = ({ onAddTask }) => {
     setSelectedPriority(event.target.value);
   };
 
+
   return (
-    <>
-      <ErrorModal
-        errorTitle="Error title"
-        errorMessage="error message"
-      />
+    <div>
+      {error && <ErrorModal {...error} />}
       <Card inputCardStyles={styles["input-card"]}>
         <form onSubmit={addTaskHandler} className={styles.form}>
           <div>
@@ -60,7 +64,7 @@ const AddTask = ({ onAddTask }) => {
           <Button buttonType="submit">Add task</Button>
         </form>
       </Card>
-    </>
+    </div>
   );
 };
 
