@@ -3,9 +3,9 @@ import Button from "../button/Button";
 
 import styles from "./error-modal.module.scss";
 
-const ErrorModal = ({ errorTitle, errorMessage }) => {
+const ErrorModal = ({ errorTitle, errorMessage, onAccept }) => {
   return (
-    <div className={styles.background}>
+    <div className={styles.background} onClick={onAccept}>
       <Card inputCardStyles={styles["modal-container"]}>
         <header className={styles.header}>
           <h3>{errorTitle}</h3>

@@ -33,10 +33,13 @@ const AddTask = ({ onAddTask }) => {
     setSelectedPriority(event.target.value);
   };
 
+  const errorHandler = () => {
+    setError(null);
+  };
 
   return (
     <div>
-      {error && <ErrorModal {...error} />}
+      {error && <ErrorModal {...error} onAccept={errorHandler} />}
       <Card inputCardStyles={styles["input-card"]}>
         <form onSubmit={addTaskHandler} className={styles.form}>
           <div>
