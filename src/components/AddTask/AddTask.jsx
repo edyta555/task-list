@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Card from "../UI/card/Card";
 import Button from "../UI/button/Button";
+import ErrorModal from "../UI/error-modal/ErrorModal";
 
 import styles from "./add-task.module.scss";
 
@@ -27,33 +28,39 @@ const AddTask = ({ onAddTask }) => {
   };
 
   return (
-    <Card inputCardStyles={styles["input-card"]}>
-      <form onSubmit={addTaskHandler} className={styles.form}>
-        <div>
-          <label htmlFor="task">Task:</label>
-          <input
-            id="task"
-            type="text"
-            value={enteredTask}
-            onChange={changeTaskHandler}
-          />
-        </div>
-        <div>
-          <label htmlFor="task">Priority:</label>
-          <select
-            name="priority"
-            id="priority"
-            value={selectedPriority}
-            onChange={changePriorityHandler}
-          >
-            <option value="hight">Hight</option>
-            <option value="medium">Medium</option>
-            <option value="low">Low</option>
-          </select>
-        </div>
-        <Button buttonType="submit">Add task</Button>
-      </form>
-    </Card>
+    <>
+      <ErrorModal
+        errorTitle="Error title"
+        errorMessage="error message"
+      />
+      <Card inputCardStyles={styles["input-card"]}>
+        <form onSubmit={addTaskHandler} className={styles.form}>
+          <div>
+            <label htmlFor="task">Task:</label>
+            <input
+              id="task"
+              type="text"
+              value={enteredTask}
+              onChange={changeTaskHandler}
+            />
+          </div>
+          <div>
+            <label htmlFor="task">Priority:</label>
+            <select
+              name="priority"
+              id="priority"
+              value={selectedPriority}
+              onChange={changePriorityHandler}
+            >
+              <option value="hight">Hight</option>
+              <option value="medium">Medium</option>
+              <option value="low">Low</option>
+            </select>
+          </div>
+          <Button buttonType="submit">Add task</Button>
+        </form>
+      </Card>
+    </>
   );
 };
 
