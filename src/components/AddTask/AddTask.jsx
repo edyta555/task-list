@@ -1,5 +1,6 @@
 import { useState } from "react";
-import Card from "../UI/Card";
+import Card from "../UI/card/Card";
+import Button from "../UI/button/Button";
 
 import styles from "./add-task.module.scss";
 
@@ -50,9 +51,7 @@ const AddTask = ({ onAddTask }) => {
             <option value="low">Low</option>
           </select>
         </div>
-        <button type="submit" className={styles["add-task-button"]}>
-          Add task
-        </button>
+        <Button buttonType="submit">Add task</Button>
       </form>
     </Card>
   );

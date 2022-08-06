@@ -1,4 +1,4 @@
-import Card from "../UI/Card";
+import Card from "../UI/card/Card";
 
 import styles from "./task-list.module.scss";
 
