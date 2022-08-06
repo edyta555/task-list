@@ -15,10 +15,10 @@ function App() {
     });
   };
   return (
-    <div>
+    <>
       <AddTask onAddTask={addTaskListHandler} />
       <TaskList tasksData={taskListData} />
-    </div>
+    </>
   );
 }
 

@@ -38,7 +38,7 @@ const AddTask = ({ onAddTask }) => {
   };
 
   return (
-    <div>
+    <>
       {error && <ErrorModal {...error} onAccept={errorHandler} />}
       <Card inputCardStyles={styles["input-card"]}>
         <form onSubmit={addTaskHandler} className={styles.form}>
@@ -67,7 +67,7 @@ const AddTask = ({ onAddTask }) => {
           <Button buttonType="submit">Add task</Button>
         </form>
       </Card>
-    </div>
+    </>
   );
 };
 
