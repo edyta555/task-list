@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Card from "../UI/card/Card";
 import Button from "../UI/button/Button";
 import ErrorModal from "../UI/error-modal/ErrorModal";
@@ -6,31 +6,24 @@ import ErrorModal from "../UI/error-modal/ErrorModal";
 import styles from "./add-task.module.scss";
 
 const AddTask = ({ onAddTask }) => {
-  const defaultPriority = "low";
-  const [enteredTask, setEnteredTask] = useState("");
-  const [selectedPriority, setSelectedPriority] = useState(defaultPriority);
   const [error, setError] = useState();
+  const taskInputRef = useRef();
+  const priorityInputRef = useRef();
 
   const addTaskHandler = (event) => {
     event.preventDefault();
+    const enteredTask = taskInputRef.current.value;
+    const enteredPriority = priorityInputRef.current.value;
     if (enteredTask.trim().length === 0) {
       setError({
         errorTitle: "Empty field",
         errorMessage: "Please enter a task name.",
       });
     } else {
-      onAddTask(enteredTask, selectedPriority);
-      setEnteredTask("");
-      setSelectedPriority(defaultPriority);
+      onAddTask(enteredTask, enteredPriority);
+      taskInputRef.current.value = "";
+      priorityInputRef.current.value = "low";
     }
-  };
-
-  const changeTaskHandler = (event) => {
-    setEnteredTask(event.target.value);
-  };
-
-  const changePriorityHandler = (event) => {
-    setSelectedPriority(event.target.value);
   };
 
   const errorHandler = () => {
@@ -44,20 +37,15 @@ const AddTask = ({ onAddTask }) => {
         <form onSubmit={addTaskHandler} className={styles.form}>
           <div>
             <label htmlFor="task">Task:</label>
-            <input
-              id="task"
-              type="text"
-              value={enteredTask}
-              onChange={changeTaskHandler}
-            />
+            <input id="task" type="text" ref={taskInputRef} />
           </div>
           <div>
             <label htmlFor="task">Priority:</label>
             <select
               name="priority"
               id="priority"
-              value={selectedPriority}
-              onChange={changePriorityHandler}
+              defaultValue="low"
+              ref={priorityInputRef}
             >
               <option value="hight">Hight</option>
               <option value="medium">Medium</option>
